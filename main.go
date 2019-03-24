@@ -16,6 +16,7 @@ func LatestVersions(releases []*semver.Version, minVersion *semver.Version) []*s
 	return versionSlice
 }
 
+// Helper function to start a panic and try to recover the panic
 func gitError(err error) {
 	defer func() {
 		if r := recover(); r != nil {
@@ -31,22 +32,23 @@ func gitError(err error) {
 // the correct information, including this line
 func main() {
 	// Get input arg which is file path name
-
+	//arg := os.Args
+	//ioutil.ReadFile(arg[1])
 	// Github
 	client := github.NewClient(nil)
 	ctx := context.Background()
 	opt := &github.ListOptions{PerPage: 10}
-	//releases, _, err := client.Repositories.ListReleases(ctx, "kubernetes", "kubernetes", opt)
-	releases, _, err := client.Repositories.ListReleases(ctx, "lkubernetes", "kulbernetes", opt)
+	releases, _, err := client.Repositories.ListReleases(ctx, "kubernetes", "kubernetes", opt)
+	// Error handling test case
+	//releases, _, err := client.Repositories.ListReleases(ctx, "lkubernetes", "kulbernetes", opt)
 	if err != nil {
 		//panic(err) // is this really a good way?
-		/*No if we still want  to  retrieve  the relaese*/
-		/*version of other open source software			*/
+		//No it will cause a fatel error, not good if we still want to
+		//retrieve the relaese version of other open source software
 		// Try to recover and continue to run instead
 		gitError(err)
 	}
-	// Debugging printout
-	//fmt.Printf("Hello")
+
 	minVersion := semver.New("1.8.0")
 	allReleases := make([]*semver.Version, len(releases))
 	for i, release := range releases {
