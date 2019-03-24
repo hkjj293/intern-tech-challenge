@@ -50,19 +50,28 @@ func TestLatestVersions(t *testing.T) {
 		},
 		// Implement more relevant test cases here, if you can think of any
 		{
+			// For two higher major version
 			versionSlice:   []string{"2.2.1", "3.2.0"},
 			expectedResult: []string{"2.2.1", "3.2.0"},
 			minVersion:     semver.New("2.2.1"),
 		},
 		{
+			// For three higher major version
 			versionSlice:   []string{"1.8.11", "1.9.6", "1.10.1", "3.9.5", "1.8.10", "1.10.0", "2.7.14", "1.8.9", "0.9.5"},
 			expectedResult: []string{"1.10.1", "1.9.6", "1.8.11", "2.7.14", "3.9.5"},
 			minVersion:     semver.New("1.8.0"),
 		},
 		{
+			// For two minor version compare with three higher major version
 			versionSlice:   []string{"1.8.11", "1.9.6", "1.10.1", "3.9.5", "3.9.7", "1.10.0", "2.7.14", "1.8.9", "0.9.5"},
 			expectedResult: []string{"2.7.14", "3.9.7"},
 			minVersion:     semver.New("2.7.14"),
+		},
+		{
+			// For PreRelease filtering
+			versionSlice:   []string{"1.11.0-beta.2", "1.10.0", "2.1.0-alpha.1", "2.0.0", "1.8.10", "1.10.0-rc.1", "1.7.14", "1.8.9", "1.9.5"},
+			expectedResult: []string{"1.10.0", "2.0.0"},
+			minVersion:     semver.New("1.10.0"),
 		},
 	}
 

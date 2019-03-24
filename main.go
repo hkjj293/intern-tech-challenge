@@ -12,6 +12,7 @@ import (
 func LatestVersions(releases []*semver.Version, minVersion *semver.Version) []*semver.Version {
 	var versionSlice []*semver.Version
 	// This is just an example structure of the code, if you implement this interface, the test cases in main_test.go are very easy to run
+	//for i, release := range
 	return versionSlice
 }
 
@@ -31,13 +32,17 @@ func main() {
 	minVersion := semver.New("1.8.0")
 	allReleases := make([]*semver.Version, len(releases))
 	for i, release := range releases {
+		// Debugging printout
+		//fmt.Printf("%s ", *release.TagName)
 		versionString := *release.TagName
 		if versionString[0] == 'v' {
 			versionString = versionString[1:]
+			// Debugging printout
+			//fmt.Printf("%s ", versionString)
 		}
 		allReleases[i] = semver.New(versionString)
 	}
 	versionSlice := LatestVersions(allReleases, minVersion)
-
+	
 	fmt.Printf("latest versions of kubernetes/kubernetes: %s", versionSlice)
 }
