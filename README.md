@@ -24,4 +24,3 @@ For Test cases, there are two major case didn't tested in the origin file:
 2.  Test on pre-release cases
 Therefore, I added the cases in main_test.go
 
-Author: Hui Kwan Nok Chris
