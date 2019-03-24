@@ -19,7 +19,6 @@ func LatestVersions(releases []*semver.Version, minVersion *semver.Version) []*s
 	// set array pointers
 	verLoca := 0
 	relLoca := len(releases) - 1
-
 	// Find the large release Version and put as first element of versionSlice
 	for ; relLoca >= 0; relLoca-- {
 		if releases[relLoca].PreRelease != "" {
