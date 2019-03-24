@@ -1,6 +1,7 @@
 <h1># intern-tech-challenge</h1>
-<h2>Lalamove intern tech challenge</h2>
-by Kwan Nok Chris, Hui
+<h3>Lalamove intern tech challenge</h3>
+<h6>by Kwan Nok Chris, Hui</h6>
+
 
 In this challenge, I have modified the main(), LastestVersion(), created a function called showError() and added some test cases in order to fullfill the requirement.
 
