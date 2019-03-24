@@ -39,11 +39,11 @@ func main() {
 	//releases, _, err := client.Repositories.ListReleases(ctx, "kubernetes", "kubernetes", opt)
 	releases, _, err := client.Repositories.ListReleases(ctx, "lkubernetes", "kulbernetes", opt)
 	if err != nil {
-		// Try to recover and continue to run
-		gitError(err)
 		//panic(err) // is this really a good way?
 		/*No if we still want  to  retrieve  the relaese*/
 		/*version of other open source software			*/
+		// Try to recover and continue to run instead
+		gitError(err)
 	}
 	// Debugging printout
 	//fmt.Printf("Hello")
