@@ -22,7 +22,6 @@ func LatestVersions(releases []*semver.Version, minVersion *semver.Version) []*s
 
 	// Find the large release Version and put as first element of versionSlice
 	for ; relLoca >= 0; relLoca-- {
-		print(releases[relLoca].String)
 		if releases[relLoca].PreRelease != "" {
 			continue
 		} else if releases[relLoca].Compare(*minVersion) < 0 {
@@ -91,7 +90,7 @@ func main() {
 		// Github
 		client := github.NewClient(nil)
 		ctx := context.Background()
-		opt := &github.ListOptions{PerPage: 10}
+		opt := &github.ListOptions{PerPage: 50}
 		for softNum := 0; softNum < len(repoMins); softNum++ {
 			//***Error handling test case*********//
 			//releases, _, err := client.Repositories.ListReleases(ctx, "lkubernetes", "kulbernetes", opt)
