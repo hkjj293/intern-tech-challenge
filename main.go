@@ -19,10 +19,14 @@ func LatestVersions(releases []*semver.Version, minVersion *semver.Version) []*s
 	// set array pointers
 	verLoca := 0
 	relLoca := len(releases) - 1
+
 	// Find the large release Version and put as first element of versionSlice
 	for ; relLoca >= 0; relLoca-- {
+		print(releases[relLoca].String)
 		if releases[relLoca].PreRelease != "" {
 			continue
+		} else if releases[relLoca].Compare(*minVersion) < 0 {
+			break
 		} else {
 			versionSlice = append(versionSlice, releases[relLoca])
 			break
@@ -32,6 +36,8 @@ func LatestVersions(releases []*semver.Version, minVersion *semver.Version) []*s
 	for ; relLoca >= 0; relLoca-- {
 		if releases[relLoca].PreRelease != "" {
 			continue
+		} else if releases[relLoca].Compare(*minVersion) < 0 {
+			break
 		} else {
 			// Compare Major, then Minor, no need for patch as first one is largest patch
 			if releases[relLoca].Major < versionSlice[verLoca].Major {
