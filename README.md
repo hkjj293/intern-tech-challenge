@@ -1,5 +1,6 @@
 # intern-tech-challenge
-Lalamove intern tech challenge\nby Kwan Nok Chris, Hui
+Lalamove intern tech challenge
+by Kwan Nok Chris, Hui
 
 In this challenge, I have modified the main(), LastestVersion(), created a function called showError() and added some test cases in order to fullfill the requirement.
 
