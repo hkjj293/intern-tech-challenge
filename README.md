@@ -1,4 +1,4 @@
-<h1># intern-tech-challenge</h1>
+<h1>Intern-tech-challenge</h1>
 <h3>Lalamove intern tech challenge</h3>
 <h6>by Kwan Nok Chris, Hui</h6>
 
