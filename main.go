@@ -16,6 +16,7 @@ func LatestVersions(releases []*semver.Version, minVersion *semver.Version) []*s
 	var versionSlice []*semver.Version
 	// This is just an example structure of the code, if you implement this interface, the test cases in main_test.go are very easy to run
 	semver.Sort(releases)
+	print(minVersion.String())
 	// set array pointers
 	verLoca := 0
 	relLoca := len(releases) - 1
@@ -106,8 +107,9 @@ func main() {
 				//Try to recover and continue to run instead
 				showError(err)
 			}
-
-			minVersion := semver.New("1.8.0")
+			//Original minVersion is not used when reading from file****************
+			//minVersion := semver.New("1.8.0")
+			minVersion := semver.New(minVers[softNum])
 			allReleases := make([]*semver.Version, len(releases))
 			for i, release := range releases {
 				versionString := *release.TagName
