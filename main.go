@@ -15,8 +15,34 @@ import (
 func LatestVersions(releases []*semver.Version, minVersion *semver.Version) []*semver.Version {
 	var versionSlice []*semver.Version
 	// This is just an example structure of the code, if you implement this interface, the test cases in main_test.go are very easy to run
-	//for i, release := range
-	semver.Sort(versionSlice)
+	semver.Sort(releases)
+	// set array pointers
+	verLoca := 0
+	relLoca := len(releases) - 1
+	// Find the large release Version and put as first element of versionSlice
+	for ; relLoca >= 0; relLoca-- {
+		if releases[relLoca].PreRelease != "" {
+			continue
+		} else {
+			versionSlice = append(versionSlice, releases[relLoca])
+			break
+		}
+	}
+	// Compare remaining release in releases to versionSlice[curr]
+	for ; relLoca >= 0; relLoca-- {
+		if releases[relLoca].PreRelease != "" {
+			continue
+		} else {
+			// Compare Major, then Minor, no need for patch as first one is largest patch
+			if releases[relLoca].Major < versionSlice[verLoca].Major {
+				verLoca++
+				versionSlice = append(versionSlice, releases[relLoca])
+			} else if releases[relLoca].Minor < versionSlice[verLoca].Minor {
+				verLoca++
+				versionSlice = append(versionSlice, releases[relLoca])
+			}
+		}
+	}
 	return versionSlice
 }
 
